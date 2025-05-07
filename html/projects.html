@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>研究项目 - 华中农业大学生物信息学研究组</title>
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/animation.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .projects-hero {
+            position: relative;
+            height: 60vh;
+            min-height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)), url('../image/school.jpg');
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .projects-hero-content {
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .projects-hero-title {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .projects-hero-subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease 0.3s forwards;
+        }
+
+        .filter-container {
+            display: flex;
+            justify-content: center;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+
+        .filter-button {
+            background-color: #f5f5f5;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .filter-button:hover,
+        .filter-button.active {
+            background-color: #2ecc71;
+            color: white;
+        }
+
+        .projects-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 80px;
+        }
+
+        .project-card {
+            flex: 1;
+            min-width: 300px;
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            transform: translateY(50px);
+            opacity: 0;
+        }
+
+        .project-card.animate {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .project-image {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+            background: linear-gradient(135deg, #f0f4f8 0%, #d9e2ec 100%);
+        }
+
+        .project-image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 1;
+            transition: all 0.3s ease;
+        }
+
+        .project-icon {
+            font-size: 3.5rem;
+            color: rgba(0, 0, 0, 0.6);
+            text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.5);
+            transform: scale(1);
+            transition: all 0.3s ease;
+        }
+
+        .project-content {
+            padding: 20px;
+        }
+
+        .project-category {
+            font-size: 0.9rem;
+            color: #2ecc71;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .project-description {
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .project-meta {
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+            color: #777;
+            font-size: 0.9rem;
+        }
+
+        .project-meta i {
+            margin-right: 5px;
+        }
+
+        .project-detail-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .project-detail-button:hover {
+            background-color: #2980b9;
+        }
+
+        @media (max-width: 768px) {
+            .projects-hero-title {
+                font-size: 2.2rem;
+            }
+            
+            .projects-hero-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .project-card {
+                min-width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <h1>HZAU-BIO</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="../index.html">首页</a></li>
+                <li><a href="teacher.html">导师介绍</a></li>
+                <li><a href="team.html">成员</a></li>
+                <li><a href="projects.html" class="active">科学研究</a></li>
+                <li><a href="main_paper.html">主要论文</a></li>
+            </ul>
+            <div class="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- 英雄区域 -->
+        <section class="projects-hero">
+            <div class="projects-hero-content">
+                <h1 class="projects-hero-title">研究项目</h1>
+                <p class="projects-hero-subtitle">我们的研究组致力于开展前沿生物信息学研究项目，涵盖基因组学、蛋白质结构、机器学习和计算生物学等多个领域</p>
+            </div>
+        </section>
+
+        <!-- 项目筛选器 -->
+        <section class="container">
+            <!-- 项目列表 -->
+            <div class="projects-container">
+                <!-- 在研项目 -->
+                <div class="project-card scroll-animation">
+                    <div class="project-image">
+                        <div class="project-image-overlay">
+                            <div class="project-icon">
+                                <i class="fas fa-seedling"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-category">国家绿肥产业技术体系</div>
+                        <h3 class="project-title">水田土壤及养分管理岗位</h3>
+                        <p class="project-description">CARS-22</p>
+                        <div class="project-meta">
+                            <span><i class="far fa-calendar-alt"></i> 2017-至今</span>
+                            <span><i class="fas fa-user"></i> 参加</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card scroll-animation">
+                    <div class="project-image">
+                        <div class="project-image-overlay">
+                            <div class="project-icon">
+                                <i class="fas fa-microscope"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-category">国家自然科学基金</div>
+                        <h3 class="project-title">长期绿肥还田下水稻土中黏土矿物演化研究</h3>
+                        <p class="project-description">41977020 | 研究黏土矿物演化及其对团聚体水稳性的影响</p>
+                        <div class="project-meta">
+                            <span><i class="far fa-calendar-alt"></i> 2020-2023</span>
+                            <span><i class="fas fa-user"></i> 主持</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card scroll-animation">
+                    <div class="project-image">
+                        <div class="project-image-overlay">
+                            <div class="project-icon">
+                                <i class="fas fa-city"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-category">国家重点研发计划</div>
+                        <h3 class="project-title">村镇社区环境监测及修复关键技术研发</h3>
+                        <p class="project-description">2019YFD1100503</p>
+                        <div class="project-meta">
+                            <span><i class="far fa-calendar-alt"></i> 2019-2023</span>
+                            <span><i class="fas fa-user"></i> 子课题主持</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card scroll-animation">
+                    <div class="project-image">
+                        <div class="project-image-overlay">
+                            <div class="project-icon">
+                                <i class="fas fa-recycle"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-category">公益性行业专项</div>
+                        <h3 class="project-title">生活污泥沼气化处理利用技术及设备研究与示范</h3>
+                        <p class="project-description">201303101</p>
+                        <div class="project-meta">
+                            <span><i class="far fa-calendar-alt"></i> 2013-2017</span>
+                            <span><i class="fas fa-user"></i> 参加</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card scroll-animation">
+                    <div class="project-image">
+                        <div class="project-image-overlay">
+                            <div class="project-icon">
+                                <i class="fas fa-leaf"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-category">公益性行业专项</div>
+                        <h3 class="project-title">主要粮食作物一次性施肥技术研究与示范</h3>
+                        <p class="project-description">201303103</p>
+                        <div class="project-meta">
+                            <span><i class="far fa-calendar-alt"></i> 2013-2017</span>
+                            <span><i class="fas fa-user"></i> 参加</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 继续添加更多项目卡片 -->
+                <div class="project-card scroll-animation">
+                    <div class="project-image">
+                        <div class="project-image-overlay">
+                            <div class="project-icon">
+                                <i class="fas fa-atom"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-category">国家自然科学基金</div>
+                        <h3 class="project-title">地带性土壤纳米颗粒研究</h3>
+                        <p class="project-description">41271252 | 研究物质组成与粘土矿物演化特点</p>
+                        <div class="project-meta">
+                            <span><i class="far fa-calendar-alt"></i> 2013-2016</span>
+                            <span><i class="fas fa-user"></i> 主持</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 继续添加其他项目... -->
+                <div class="project-card scroll-animation">
+                    <div class="project-image">
+                        <div class="project-image-overlay">
+                            <div class="project-icon">
+                                <i class="fas fa-atom"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-category">国家自然科学基金</div>
+                        <h3 class="project-title">亚热带土壤纳米颗粒研究</h3>
+                        <p class="project-description">41271252 | 研究物质组成与粘土矿物演化特点</p>
+                        <div class="project-meta">
+                            <span><i class="far fa-calendar-alt"></i> 2013-2016</span>
+                            <span><i class="fas fa-user"></i> 主持</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card scroll-animation">
+                    <div class="project-image">
+                        <div class="project-image-overlay">
+                            <div class="project-icon">
+                                <i class="fas fa-leaf"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-category">教育部留学回国人员启动基金</div>
+                        <h3 class="project-title">皂角苷在土壤矿物上的吸附与重金属解吸机理研究</h3>
+                        <div class="project-meta">
+                            <span><i class="far fa-calendar-alt"></i> 2012-2014</span>
+                            <span><i class="fas fa-user"></i> 主持</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card scroll-animation">
+                    <div class="project-image">
+                        <div class="project-image-overlay">
+                            <div class="project-icon">
+                                <i class="fas fa-university"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-category">博士点基金项目</div>
+                        <h3 class="project-title">亚热带土壤铁锰胶膜对重金属离子迁移的影响</h3>
+                        <p class="project-description">20110146110027</p>
+                        <div class="project-meta">
+                            <span><i class="far fa-calendar-alt"></i> 2012-2014</span>
+                            <span><i class="fas fa-user"></i> 主持</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card scroll-animation">
+                    <div class="project-image">
+                        <div class="project-image-overlay">
+                            <div class="project-icon">
+                                <i class="fas fa-university"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-category">国家自然科学基金</div>
+                        <h3 class="project-title">亚热带土壤铁锰胶膜的形成机理</h3>
+                        <p class="project-description">40971143</p>
+                        <div class="project-meta">
+                            <span><i class="far fa-calendar-alt"></i> 2010-2012</span>
+                            <span><i class="fas fa-user"></i> 主持</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card scroll-animation">
+                    <div class="project-image">
+                        <div class="project-image-overlay">
+                            <div class="project-icon">
+                                <i class="fas fa-mountain"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-category">国家基金重点项目</div>
+                        <h3 class="project-title">红壤团聚体稳定性及其在坡面侵蚀过程中的迁移与转化规律</h3>
+                        <p class="project-description">40930529</p>
+                        <div class="project-meta">
+                            <span><i class="far fa-calendar-alt"></i> 2010-2013</span>
+                            <span><i class="fas fa-user"></i> 参加</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 继续添加更早期的项目... -->
+                <div class="project-card scroll-animation">
+                    <div class="project-image">
+                        <div class="project-image-overlay">
+                            <div class="project-icon">
+                                <i class="fas fa-vial"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-category">校科技创新基金</div>
+                        <h3 class="project-title">几种土壤层状硅酸盐矿物的微生物转化研究</h3>
+                        <p class="project-description">52204-08029</p>
+                        <div class="project-meta">
+                            <span><i class="far fa-calendar-alt"></i> 2009-2010</span>
+                            <span><i class="fas fa-user"></i> 主持</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card scroll-animation">
+                    <div class="project-image">
+                        <div class="project-image-overlay">
+                            <div class="project-icon">
+                                <i class="fas fa-industry"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-category">863计划</div>
+                        <h3 class="project-title">利用改性活化磷矿粉钝化农田土壤重金属的研究与应用</h3>
+                        <p class="project-description">2007AA10Z408</p>
+                        <div class="project-meta">
+                            <span><i class="far fa-calendar-alt"></i> 2007-2010</span>
+                            <span><i class="fas fa-user"></i> 参加</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card scroll-animation">
+                    <div class="project-image">
+                        <div class="project-image-overlay">
+                            <div class="project-icon">
+                                <i class="fas fa-seedling"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-category">十一五科技支撑计划</div>
+                        <h3 class="project-title">中南贫瘠红壤与水稻土地力提升关键技术模式研究与示范</h3>
+                        <p class="project-description">2006BAD05B09 | 子项目</p>
+                        <div class="project-meta">
+                            <span><i class="far fa-calendar-alt"></i> 2006-2010</span>
+                            <span><i class="fas fa-user"></i> 参加</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card scroll-animation">
+                    <div class="project-image">
+                        <div class="project-image-overlay">
+                            <div class="project-icon">
+                                <i class="fas fa-flask"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-category">国家自然科学基金</div>
+                        <h3 class="project-title">表生环境中钙锰矿化学生成条件和动力学的实验研究</h3>
+                        <p class="project-description">40403009</p>
+                        <div class="project-meta">
+                            <span><i class="far fa-calendar-alt"></i> 2005-2007</span>
+                            <span><i class="fas fa-user"></i> 参加</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card scroll-animation">
+                    <div class="project-image">
+                        <div class="project-image-overlay">
+                            <div class="project-icon">
+                                <i class="fas fa-flask"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-category">湖北省自然科学基金</div>
+                        <h3 class="project-title">土壤有机、无机胶结物相互作用及鄂南红壤结构体稳定性</h3>
+                        <p class="project-description">4006-056056</p>
+                        <div class="project-meta">
+                            <span><i class="far fa-calendar-alt"></i> 2005-2006</span>
+                            <span><i class="fas fa-user"></i> 主持</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card scroll-animation">
+                    <div class="project-image">
+                        <div class="project-image-overlay">
+                            <div class="project-icon">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-category">教育部留学回国人员启动基金</div>
+                        <h3 class="project-title">可变电荷与恒电荷土壤根际表面化学及重金属吸收特点</h3>
+                        <div class="project-meta">
+                            <span><i class="far fa-calendar-alt"></i> 2012-2014</span>
+                            <span><i class="fas fa-user"></i> 主持</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card scroll-animation">
+                    <div class="project-image">
+                        <div class="project-image-overlay">
+                            <div class="project-icon">
+                                <i class="fas fa-atom"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-category">国家自然科学基金</div>
+                        <h3 class="project-title">几种土壤中胶膜的物质组成、性质及元素形态与转化</h3>
+                        <p class="project-description">40071048</p>
+                        <div class="project-meta">
+                            <span><i class="far fa-calendar-alt"></i> 2001-2004</span>
+                            <span><i class="fas fa-user"></i> 参加</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card scroll-animation">
+                    <div class="project-image">
+                        <div class="project-image-overlay">
+                            <div class="project-icon">
+                                <i class="fas fa-mountain"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-category">国家973项目</div>
+                        <h3 class="project-title">红壤侵蚀与红壤结构变化的相互作用机理与调控</h3>
+                        <p class="project-description">G1999011801 | 子专题</p>
+                        <div class="project-meta">
+                            <span><i class="far fa-calendar-alt"></i> 2000-2003</span>
+                            <span><i class="fas fa-user"></i> 参加</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card scroll-animation">
+                    <div class="project-image">
+                        <div class="project-image-overlay">
+                            <div class="project-icon">
+                                <i class="fas fa-seedling"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-category">国家自然科学基金</div>
+                        <h3 class="project-title">等高绿篱—坡地农业复合系统土壤养分流失特性的研究</h3>
+                        <p class="project-description">49771054</p>
+                        <div class="project-meta">
+                            <span><i class="far fa-calendar-alt"></i> 1998-2000</span>
+                            <span><i class="fas fa-user"></i> 参加</span>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3 class="footer-title">联系方式</h3>
+                <p><i class="fas fa-map-marker-alt"></i> 湖北省武汉市洪山区狮子山街1号</p>
+                <p><i class="fas fa-phone"></i> 027-12345678</p>
+                <p><i class="fas fa-envelope"></i> bioinfo@hzau.edu.cn</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-weixin"></i></a>
+                    <a href="#"><i class="fab fa-weibo"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h3 class="footer-title">快速链接</h3>
+                <div class="footer-links">
+                    <a href="../index.html">首页</a>
+                    <a href="projects.html">研究项目</a>
+                    <a href="team.html">团队成员</a>
+                    <a href="main_paper.html">研究成果</a>
+                    <a href="contact.html">联系我们</a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h3 class="footer-title">合作单位</h3>
+                <div class="footer-links">
+                    <a href="#">中国科学院</a>
+                    <a href="#">华中科技大学</a>
+                    <a href="#">武汉大学</a>
+                    <a href="#">哈佛大学</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>@华中农业大学 生物信息学与计算生物学研究组. 保留所有权利。</p>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/animations.js"></script>
+
+    <script>
+        // 移除项目筛选功能的脚本
+        document.addEventListener('DOMContentLoaded', function() {
+            const projectCards = document.querySelectorAll('.project-card');
+            
+            // 只保留动画效果
+            projectCards.forEach(card => {
+                card.style.display = 'block';
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, 50);
+            });
+        });
+    </script>
+</body>
+
+</html> 
