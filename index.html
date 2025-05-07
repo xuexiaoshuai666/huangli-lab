@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>土壤化学与土壤肥力研究组 - 华中农业大学</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/animation.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .hero-section {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url('image/school.jpg');
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            z-index: 2;
+            max-width: 800px;
+            padding: 20px;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease 0.3s forwards;
+        }
+
+        .hero-button {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: #2ecc71;
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease 0.6s forwards;
+        }
+
+        .hero-button:hover {
+            background-color: #27ae60;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .scroll-down {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2rem;
+            color: white;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0) translateX(-50%);
+            }
+            40% {
+                transform: translateY(-30px) translateX(-50%);
+            }
+            60% {
+                transform: translateY(-15px) translateX(-50%);
+            }
+        }
+
+        .card-section {
+            padding: 80px 0;
+            background-color: #f9f9f9;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 2.5rem;
+            position: relative;
+        }
+
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 3px;
+            background-color: #2ecc71;
+            margin: 15px auto;
+        }
+
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            flex: 1;
+            min-width: 280px;
+            max-width: 350px;
+            transform: translateY(50px);
+            opacity: 0;
+        }
+
+        .card.animate {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-img {
+            height: 200px;
+            background-color: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: #666;
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .card-text {
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .card-link {
+            display: inline-block;
+            padding: 8px 20px;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .card-link:hover {
+            background-color: #2980b9;
+        }
+
+        .stats-section {
+            padding: 80px 0;
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+        }
+
+        .stats-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .stat-item {
+            flex: 1;
+            min-width: 200px;
+            padding: 20px;
+            margin: 15px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #2ecc71;
+        }
+
+        .stat-label {
+            font-size: 1.2rem;
+        }
+
+        footer {
+            background-color: #222;
+            color: #aaa;
+            padding: 40px 0;
+            position: relative;
+            bottom: auto;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            padding: 0 20px;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 20px;
+        }
+
+        .footer-title {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .footer-links a {
+            display: block;
+            color: #aaa;
+            text-decoration: none;
+            margin-bottom: 10px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #2ecc71;
+        }
+
+        .social-icons {
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: #333;
+            color: white;
+            text-align: center;
+            line-height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            background-color: #2ecc71;
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #444;
+            margin-top: 30px;
+            color: #666;
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+            }
+            
+            .footer-section {
+                margin-bottom: 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <h1>HZAU-BIO</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">首页</a></li>
+                <li><a href="html/teacher.html">导师介绍</a></li>
+                <li><a href="html/team.html">成员</a></li>
+                <li><a href="html/projects.html">科学研究</a></li>
+                <li><a href="html/main_paper.html">主要论文</a></li>
+            </ul>
+            <div class="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- 英雄区域 -->
+        <section class="hero-section" id="home">
+            <div class="hero-content">
+                <h1 class="hero-title">土壤化学与土壤肥力研究组</h1>
+                <p class="hero-subtitle">致力于绿肥种植还田、土壤团聚体稳定性与土壤重金属污染修复等研究领域</p>
+                <a href="#about" class="hero-button">了解更多</a>
+            </div>
+            <div class="scroll-down">
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </section>
+
+        <!-- 关于我们 -->
+        <section class="card-section" id="about">
+            <div class="container">
+                <h2 class="section-title">关于我们</h2>
+                <div class="card-container">
+                    <div class="card">
+                        <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1542435503-956c469947f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=200&q=80'); background-size: cover; background-position: center; color: white; text-shadow: 0 0 5px rgba(0,0,0,0.7);">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">导师介绍</h3>
+                            <p class="card-text">华中农业大学资源与环境学院土壤与植物营养系，致力于土壤化学与土壤肥力研究。研究组配备有现代化的实验设备，拥有农业农村部长江中下游耕地保育重点实验室的技术支持。</p>
+                            <a href="html/teacher.html" class="card-link">查看详情</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=200&q=80'); background-size: cover; background-position: center; color: white; text-shadow: 0 0 5px rgba(0,0,0,0.7);">
+                            <i class="fas fa-microscope"></i>
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">研究方向</h3>
+                            <p class="card-text">我们的主要研究方向包括绿肥种植还田下水田土壤及养分管理、亚热带土壤团聚体稳定性与土壤养分供应关系、土壤重金属钝化与污染修复技术，以及全国第三次土壤普查。</p>
+                            <a href="html/projects.html" class="card-link">查看详情</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=200&q=80'); background-size: cover; background-position: center; color: white; text-shadow: 0 0 5px rgba(0,0,0,0.7);">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">团队成员</h3>
+                            <p class="card-text">黄丽教授领导的团队现有在读博士生5名、硕士生8名，已培养博士生6名、硕士生38名，包括多名国际留学生。团队成员来自不同背景，形成了多学科交叉的研究氛围。</p>
+                            <a href="html/team.html" class="card-link">认识团队</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 统计数字 -->
+        <section class="stats-section">
+            <div class="container">
+                <div class="stats-container">
+                    <div class="stat-item">
+                        <div class="stat-number" data-count="107">0</div>
+                        <div class="stat-label">发表论文</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" data-count="26">0</div>
+                        <div class="stat-label">科研项目</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" data-count="96">0</div>
+                        <div class="stat-label">培养学生</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" data-count="1">0</div>
+                        <div class="stat-label">国际合作</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3 class="footer-title">联系方式</h3>
+                <p><i class="fas fa-map-marker-alt"></i> 湖北省武汉市洪山区狮子山街1号</p>
+                <p><i class="fas fa-phone"></i> 13036165770</p>
+                <p><i class="fas fa-envelope"></i> daisyh@mail.hzau.edu.cn</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-weixin"></i></a>
+                    <a href="#"><i class="fab fa-weibo"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h3 class="footer-title">快速链接</h3>
+                <div class="footer-links">
+                    <a href="index.html">首页</a>
+                    <a href="html/teacher.html">导师介绍</a>
+                    <a href="html/team.html">成员</a>
+                    <a href="html/projects.html">科学研究</a>
+                    <a href="html/main_paper.html">主要论文</a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h3 class="footer-title">合作单位</h3>
+                <div class="footer-links">
+                    <a href="#">中国科学院</a>
+                    <a href="#">华中科技大学</a>
+                    <a href="#">武汉大学</a>
+                    <a href="#">哈佛大学</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>@华中农业大学 资源与环境学院 土壤化学与土壤肥力研究组. 保留所有权利。</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/animations.js"></script>
+</body>
+
+</html>
