@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>导师介绍 - 生物信息学与计算生物学研究组</title>
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/animation.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .page-header {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../image/school.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+            margin-bottom: 50px;
+        }
+        
+        .page-title {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .professor-section {
+            max-width: 1200px;
+            margin: 0 auto 80px;
+            padding: 0 20px;
+        }
+        
+        .professor-card {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 60px;
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .professor-header {
+            display: flex;
+            background-color: #f9f9f9;
+            padding: 30px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .professor-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 30px;
+            background-color: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+        }
+        
+        .professor-info {
+            flex: 1;
+        }
+        
+        .professor-name {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        
+        .professor-title {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        .professor-contact {
+            margin-top: 20px;
+        }
+        
+        .professor-contact p {
+            margin-bottom: 5px;
+            color: #666;
+        }
+        
+        .professor-body {
+            padding: 30px;
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #2ecc71;
+        }
+        
+        .professor-bio {
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+        
+        .research-interests, .achievements, .projects, .papers, .students {
+            margin-bottom: 30px;
+        }
+        
+        .achievements ul, .research-interests ul, .projects ul, .papers ul, .students ul {
+            padding-left: 20px;
+        }
+        
+        .achievements li, .research-interests li, .projects li, .papers li, .students li {
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+        
+        .students-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .student-category {
+            background-color: #f5f5f5;
+            border-radius: 10px;
+            padding: 20px;
+        }
+        
+        .student-category h4 {
+            color: #2ecc71;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+        
+        @media (max-width: 768px) {
+            .professor-header {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            
+            .professor-photo {
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+            
+            .students-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <h1>HZAU-BIO</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="../index.html">首页</a></li>
+                <li><a href="teacher.html" class="active">导师介绍</a></li>
+                <li><a href="team.html">成员</a></li>
+                <li><a href="projects.html">科学研究</a></li>
+                <li><a href="main_paper.html">主要论文</a></li>
+            </ul>
+            <div class="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="page-header">
+            <h1 class="page-title">导师介绍</h1>
+            <p>了解我们研究组的领军人物和指导教师</p>
+        </div>
+        
+        <section class="professor-section">
+            <div class="professor-card">
+                <div class="professor-header">
+                    <div class="professor-photo">
+                        <!-- <i class="fas fa-user"></i> -->
+                         <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=huangli_v9&backgroundColor=f5fffa&eyes=default&eyebrows=default&mouth=smile" alt="">
+                    </div>
+                    <div class="professor-info">
+                        <h2 class="professor-name">黄丽</h2>
+                        <p class="professor-title">教授，博士生导师，中共党员</p>
+                        <p>华中农业大学资源与环境学院</p>
+                        <p>土壤与植物营养系副系主任</p>
+                        
+                        <div class="professor-contact">
+                            <p><i class="fas fa-envelope"></i> daisyh@mail.hzau.edu.cn</p>
+                            <p><i class="fas fa-phone"></i> 13036165770</p>
+                            <p><i class="fas fa-map-marker-alt"></i> 农业农村部长江中下游耕地保育重点实验室</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="professor-body">
+                    <div class="professor-bio">
+                        <h3 class="section-title">个人简介</h3>
+                        <p>黄丽，华中农业大学资源与环境学院教授，博士生导师，中共党员。现任土壤与植物营养系副系主任、农业农村部长江中下游耕地保育重点实验室副主任。</p>
+                        <p>黄丽教授是中国土壤学会会员、国家绿肥产业体系水田土壤及养分管理岗位团队成员、全国第三次土壤普查剖面技术领队，以及土壤学国家精品课程和慕课、土壤肥料学湖北省精品课程的骨干教师。</p>
+                    </div>
+                    
+                    <div class="research-interests">
+                        <h3 class="section-title">研究方向</h3>
+                        <ul>
+                            <li><strong>土壤化学与土壤肥力：</strong>绿肥种植还田下水田土壤及养分管理，研究长期绿肥还田对土壤养分和黏土矿物的影响。</li>
+                            <li><strong>亚热带土壤团聚体研究：</strong>研究亚热带土壤团聚体稳定性与土壤养分供应关系，探索提高土壤肥力的途径。</li>
+                            <li><strong>土壤修复技术：</strong>土壤重金属钝化与污染修复技术，开发高效、环保的土壤修复方法。</li>
+                            <li><strong>土壤普查：</strong>全国第三次土壤普查剖面调查与采样、成果编制等工作。</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="achievements">
+                        <h3 class="section-title">主要成就与荣誉</h3>
+                        <ul>
+                            <li>2021年：湖北省科协学会改革创新先进个人</li>
+                            <li>2019-2020学年：华中农业大学优秀博士论文指导奖1项</li>
+                            <li>2016年至2005年：华中农业大学教学质量二等奖1项、三等奖3项</li>
+                            <li>2016年至2012年：湖北省优秀硕士学位论文指导奖1项，华中农业大学优秀硕士论文指导奖2项</li>
+                            <li>2015年：华中农业大学"优秀教师党支部书记"荣誉称号</li>
+                            <li>2013年和2012年：《农业环境科学学报》优秀审稿人</li>
+                            <li>2005年：湖北省自然科学优秀学术论文二等奖1项</li>
+                            <li>专利号201010595856.X：一种治理土壤重金属铜、铅、镉污染的钝化剂及应用</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="work-experience">
+                        <h3 class="section-title">工作经历</h3>
+                        <ul>
+                            <li><strong>2010年12月至今：</strong>华中农业大学资源与环境学院教授</li>
+                            <li><strong>2009年3月至2010年3月：</strong>加拿大不列颠哥伦比亚大学访问学者</li>
+                            <li><strong>2002年10月至2010年12月：</strong>华中农业大学资源与环境学院副教授</li>
+                            <li><strong>1995年6月至2002年9月：</strong>华中农业大学资源与环境学院讲师</li>
+                            <li><strong>1990年7月至1992年8月：</strong>湖北省钟祥市农业局助理农艺师</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="teaching">
+                        <h3 class="section-title">教学情况</h3>
+                        <p>黄丽教授主要教授以下课程：</p>
+                        <ul>
+                            <li>土壤学</li>
+                            <li>农业环境学</li>
+                            <li>土壤肥料学</li>
+                            <li>农业资源与环境研究前沿</li>
+                            <li>资源环境研究专题</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="projects">
+                        <h3 class="section-title">科研项目</h3>
+                        <ul>
+                            <li><strong>2020-2023年：</strong>长期绿肥还田下水稻土中黏土矿物演化及其对团聚体水稳性的影响，国家自然科学基金41977020，主持</li>
+                            <li><strong>2019-2023年：</strong>村镇社区环境监测及修复关键技术研发，国家重点研发计划2019YFD1100503，子课题主持</li>
+                            <li><strong>2017年至今：</strong>水田土壤及养分管理岗位，国家绿肥产业技术体系CARS-22，参加</li>
+                            <li><strong>2013-2017年：</strong>生活污泥沼气化处理利用技术及设备研究与示范，公益性行业专项201303101，参加</li>
+                            <li><strong>2013-2017年：</strong>主要粮食作物一次性施肥技术研究与示范，公益性行业专项201303103，参加</li>
+                            <li><strong>2013-2016年：</strong>几种地带性土壤纳米颗粒的物质组成与粘土矿物演化特点，国家自然科学基金41271252，主持</li>
+                            <li><strong>2012-2014年：</strong>亚热带土壤纳米颗粒的表面化学性质与环境效应，中央高校基本科研业务费专项资金2013PY002，主持</li>
+                            <li><strong>2012-2014年：</strong>皂角苷在土壤矿物上的吸附与重金属解吸机理研究，教育部留学回国人员启动基金，主持</li>
+                            <li><strong>2010-2012年：</strong>亚热带土壤铁锰胶膜的形成机理，国家自然科学基金40971143，主持</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="papers">
+                        <h3 class="section-title">代表性论文</h3>
+                        <ul>
+                            <li>Chen Y, <strong>Huang L</strong>, et al. Long-term Chinese milk vetch incorporation promotes soil aggregate stability by affecting mineralogy and organic carbon. Journal of Integrative Agriculture, 2024.</li>
+                            <li>Chen Y L, <strong>Huang L</strong>, et al. Clay minerals transformation in soil particles of Udic Ferrisols under 36-year Chinese milk vetch application in southern China. Applied Clay Science, 2024.</li>
+                            <li>Zhou Z, <strong>Huang L</strong>, et al. Efficient removal of cadmium and lead in water by using nano-manganese oxide-loaded hydrochloric acid pretreated biochar. Journal of Environmental Chemical Engineering. 2024.</li>
+                            <li>Huang Y, <strong>Huang L</strong>, et al. Effects of long-term green manure application on organic carbon fractions and clay minerals and their interactions in paddy soil aggregates. Plant and Soil, 2023.</li>
+                            <li>Chen Y L, <strong>Huang L</strong>, et al. Straw returning and potassium fertilization affect clay mineralogy and available potassium. Nutrient Cycling in Agroecosystems, 2023.</li>
+                            <li>Huang Y, <strong>Huang L</strong>, et al. Effects of substitution of chemical fertilizer by Chinese milk vetch on distribution and composition of aggregates-associated organic carbon fractions in paddy soils. Plant and Soil, 2022.</li>
+                            <li>Xue B, <strong>Huang L</strong>, et al. Straw residue incorporation and potassium fertilization enhances soil aggregate stability by altering soil content of iron oxide and organic carbon in a rice-rape cropping system. Land Degradation & Development, 2022.</li>
+                            <li>Xue B, <strong>Huang L</strong>, et al. Effect of clay mineralogy and soil organic carbon in aggregates under straw incorporation. Agronomy, 2022.</li>
+                            <li>Song L, Li L, Zhang CJ, <strong>Huang L</strong>, et al. CRWS-mountain Project: Coordinate remediation techniques and devices for water-soil pollution in mountain areas in China. Journal of Mountain Science. 2021.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="students">
+                        <h3 class="section-title">研究生培养情况</h3>
+                        <div class="students-grid">
+                            <div class="student-category">
+                                <h4>在读博士生 (5名)</h4>
+                                <ul>
+                                    <li>曹迟（24级）</li>
+                                    <li>赵硕（23级）</li>
+                                    <li>甘雅芬（20级硕博连读）</li>
+                                    <li>Muhammad Mehran（22级，巴基斯坦）</li>
+                                    <li>周振（21级）</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="student-category">
+                                <h4>在读硕士生 (8名)</h4>
+                                <ul>
+                                    <li>薛智睿（24级学硕）</li>
+                                    <li>孙骏阳（24级专硕）</li>
+                                    <li>吴雨扬（24级专硕）</li>
+                                    <li>刘学浩（24级专硕）</li>
+                                    <li>刁雨方（23级学硕）</li>
+                                    <li>程晋赟（23级专硕）</li>
+                                    <li>王豪龙（23级专硕）</li>
+                                    <li>黄雷（22级学硕）</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="student-category">
+                                <h4>已毕业博士生 (6名)</h4>
+                                <ul>
+                                    <li>陈雨露（20级）</li>
+                                    <li>黄雅楠（16级硕博连读）</li>
+                                    <li>薛斌（14级硕博连读）</li>
+                                    <li>Kashif Ali Kubar（14级，巴基斯坦）</li>
+                                    <li>Georges Martial Ndzana（14级，喀麦隆）</li>
+                                    <li>张志毅（10级硕博连读）</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="student-category">
+                                <h4>已毕业硕士生 (38名)</h4>
+                                <p>包括29名学术型硕士和9名专业型硕士，培养了多名国际留学生。</p>
+                                <p>近期毕业硕士包括：王辉程(21级)、杨媛媛(22级)、黄玎(21级)、彭岗(21级)、谢坤(19级)等。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3 class="footer-title">联系方式</h3>
+                <p><i class="fas fa-map-marker-alt"></i> 湖北省武汉市洪山区狮子山街1号</p>
+                <p><i class="fas fa-phone"></i> 027-12345678</p>
+                <p><i class="fas fa-envelope"></i> bioinfo@hzau.edu.cn</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-weixin"></i></a>
+                    <a href="#"><i class="fab fa-weibo"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h3 class="footer-title">快速链接</h3>
+                <div class="footer-links">
+                    <a href="../index.html">首页</a>
+                    <a href="teacher.html">导师介绍</a>
+                    <a href="team.html">成员</a>
+                    <a href="projects.html">科学研究</a>
+                    <a href="main_paper.html">主要论文</a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h3 class="footer-title">合作单位</h3>
+                <div class="footer-links">
+                    <a href="#">中国科学院</a>
+                    <a href="#">华中科技大学</a>
+                    <a href="#">武汉大学</a>
+                    <a href="#">哈佛大学</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>@华中农业大学 资源与环境学院. 保留所有权利。</p>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/animations.js"></script>
+</body>
+</html> 

@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>团队成员 - 华中农业大学土壤化学与土壤肥力研究组</title>
+    
+    <!-- DNS 预解析 -->
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    
+    <!-- 预加载关键资源 -->
+    <link rel="preload" href="../css/base.css" as="style">
+    <link rel="preload" href="../css/animation.css" as="style">
+    <link rel="preload" href="../image/school.jpg" as="image">
+    <link rel="preload" href="../image/default-avatar.jpg" as="image">
+    
+    <!-- 异步加载非关键CSS -->
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/animation.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    </noscript>
+
+    <!-- 内联关键CSS -->
+    <style>
+        .team-hero {
+            position: relative;
+            height: 60vh;
+            min-height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)), url('../image/school.jpg');
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .team-hero-content {
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .team-hero-title {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .team-hero-subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease 0.3s forwards;
+        }
+
+        .team-category-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 50px 0 30px;
+        }
+
+        .team-category-button {
+            padding: 10px 25px;
+            margin: 0 10px 10px;
+            border: none;
+            background-color: #f5f5f5;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .team-category-button:hover,
+        .team-category-button.active {
+            background-color: #2ecc71;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(46, 204, 113, 0.3);
+        }
+
+        .team-container {
+            max-width: 1200px;
+            margin: 0 auto 80px;
+            padding: 0 20px;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .team-member {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transform: translateY(30px);
+            will-change: transform;
+            transition: transform 0.3s ease;
+        }
+
+        .team-member.animate {
+            transform: translateY(0);
+        }
+
+        .team-member:hover {
+            transform: translateY(-5px);
+            will-change: transform;
+        }
+
+        .member-image {
+            position: relative;
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .member-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .team-member:hover .member-image img {
+            transform: scale(1.05);
+        }
+
+        .member-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .team-member:hover .member-overlay {
+            opacity: 1;
+        }
+
+        .member-social {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.3s ease 0.1s;
+        }
+
+        .team-member:hover .member-social {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .member-social a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background-color: white;
+            color: #333;
+            transition: all 0.3s ease;
+        }
+
+        .member-social a:hover {
+            background-color: #2ecc71;
+            color: white;
+            transform: translateY(-5px);
+        }
+
+        /* 导师详情按钮样式 */
+        .member-social-detail-btn {
+            padding: 8px 20px;
+            background-color: #2ecc71;
+            color: white;
+            border-radius: 1px; /* 减小圆角半径 */
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-align: center; /* 确保文字居中 */
+            white-space: nowrap; /* 防止文字换行 */
+            min-width: 100px; /* 设置最小宽度 */
+            transition: all 0.3s ease;
+            display: inline-block;
+            border: none;
+            box-shadow: 0 3px 8px rgba(46, 204, 113, 0.3);
+        }
+        
+        .member-social-detail-btn:hover {
+            background-color: #27ae60;
+            color: white;
+            transform: translateY(-3px);
+        }
+        
+        .member-social-detail-btn:active {
+            transform: translateY(-2px);
+            box-shadow: 0 3px 8px rgba(46, 204, 113, 0.4);
+        }
+        /* --- */
+
+        .member-info {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .member-name {
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        .member-role {
+            font-size: 0.9rem;
+            color: #2ecc71;
+            margin-bottom: 15px;
+        }
+
+        .member-description {
+            font-size: 0.9rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .team-leader {
+            grid-column: span 2;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+
+        .team-leader .member-image {
+            width: 40%;
+            height: 100%;
+            min-height: 300px;
+        }
+
+        .team-leader .member-info {
+            width: 60%;
+            padding: 30px;
+            text-align: left;
+        }
+
+        .team-leader .member-name {
+            font-size: 1.8rem;
+        }
+
+        .team-leader .member-role {
+            font-size: 1.1rem;
+        }
+
+        .team-leader .member-description {
+            font-size: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .team-leader {
+                grid-column: span 1;
+                flex-direction: column;
+            }
+
+            .team-leader .member-image,
+            .team-leader .member-info {
+                width: 100%;
+            }
+
+            .team-leader .member-info {
+                text-align: center;
+            }
+            
+            .team-hero-title {
+                font-size: 2.2rem;
+            }
+            
+            .team-hero-subtitle {
+                font-size: 1.1rem;
+            }
+        }
+
+        .section-title {
+            text-align: center;
+            margin: 50px 0 30px;
+            font-size: 2.5rem;
+            position: relative;
+        }
+
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 3px;
+            background-color: #2ecc71;
+            margin: 15px auto;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .loading {
+            display: none;
+        }
+        
+        /* 添加图片加载占位样式 */
+        .image-placeholder {
+            background-color: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+        }
+
+        /* 添加研究生详情按钮样式 */
+        .btn-detail {
+            padding: 8px 15px;
+            background-color: #2ecc71;
+            color: white;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            display: inline-block;
+            margin-top: 10px;
+            box-shadow: 0 3px 8px rgba(46, 204, 113, 0.3);
+        }
+        .btn-detail:hover {
+            background-color: #27ae60;
+            color: white;
+            transform: translateY(-3px);
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <h1>HZAU-BIO</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="../index.html">首页</a></li>
+                <li><a href="teacher.html">导师介绍</a></li>
+                <li><a href="team.html" class="active">成员</a></li>
+                <li><a href="projects.html">科学研究</a></li>
+                <li><a href="main_paper.html">主要论文</a></li>
+            </ul>
+            <div class="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- 英雄区域 -->
+        <section class="team-hero">
+            <div class="team-hero-content">
+                <h1 class="team-hero-title">团队成员</h1>
+                <p class="team-hero-subtitle">我们的团队由杰出的研究员、博士后和研究生组成，共同致力于在生物信息学和计算生物学领域开展前沿研究</p>
+            </div>
+        </section>
+
+        <!-- 团队分类按钮 -->
+        <div class="team-category-buttons">
+            <button class="team-category-button active" data-category="all">全部成员</button>
+            <button class="team-category-button" data-category="professors">导师</button>
+            <button class="team-category-button" data-category="students">研究生团队</button>
+        </div>
+
+        <!-- 团队成员展示 -->
+        <section class="team-container">
+            <!-- 导师团队 -->
+            <div class="team-grid" id="professors">
+                <!-- 组长 -->
+                <div class="team-member team-leader scroll-animation" data-category="professors">
+                    <div class="member-image">
+                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=huangli_v9&backgroundColor=f5fffa&eyes=default&eyebrows=default&mouth=smile" alt="黄丽教授" loading="lazy">
+                    </div>
+                        <div class="member-overlay">
+                            <div class="member-social">
+                                <a href="teacher.html" class="member-social-detail-btn">查看详情</a>
+                            </div>
+                        </div>
+                    <div class="member-info">
+                        <h3 class="member-name">黄丽</h3>
+                        <p class="member-role">教授 | 博士生导师</p>
+                        <p class="member-description">黄丽教授是中国土壤学会会员、国家绿肥产业体系水田土壤及养分管理岗位团队成员、全国第三次土壤普查剖面技术领队，以及土壤学国家精品课程和慕课、土壤肥料学湖北省精品课程的骨干教师。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 研究生团队 -->
+            <h2 class="section-title" id="students-title">研究生团队</h2>
+            <div class="team-grid" id="students">
+                <!-- 博士生 -->
+                <div class="team-member scroll-animation" data-category="students">
+                    <div class="member-image">
+                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=cao_chi_v2&backgroundColor=b6e3f4&eyes=happy&eyebrows=default&mouth=smile" alt="曹迟" loading="lazy">
+                        <div class="member-overlay">
+                            <div class="member-social">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <h3 class="member-name">曹迟</h3>
+                        <p class="member-role">博士研究生 | 土壤矿物</p>
+                        <p class="member-description">2024级博士生，研究方向为土壤矿物，导师：黄丽教授</p>
+                        <a href="student_detail.html?id=cao_chi" class="btn-detail">查看详情</a>
+                    </div>
+                </div>
+
+                <div class="team-member scroll-animation" data-category="students">
+                    <div class="member-image">
+                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=ganyafen" alt="甘雅芬" loading="lazy">
+                        <div class="member-overlay">
+                            <div class="member-social">
+                                <!-- 保留悬浮动画结构，但移除按钮内容 -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <h3 class="member-name">甘雅芬</h3>
+                        <p class="member-role">博士研究生 | 土壤矿物</p>
+                        <p class="member-description">2020级博士生，研究方向为土壤矿物，导师：黄丽教授</p>
+                        <a href="student_detail.html?id=gan_yafen" class="btn-detail">查看详情</a>
+                    </div>
+                </div>
+
+                <!-- 硕士生 -->
+                <div class="team-member scroll-animation" data-category="students">
+                    <div class="member-image">
+                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=xue_zhirui&backgroundColor=c0aede" alt="薛智睿" loading="lazy">
+                        <div class="member-overlay">
+                            <div class="member-social">
+                                <!-- 保留悬浮动画结构，但移除按钮内容 -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <h3 class="member-name">薛智睿</h3>
+                        <p class="member-role">硕士研究生 | 土壤矿物</p>
+                        <p class="member-description">2024级硕士生，研究方向为土壤矿物，导师：黄丽教授</p>
+                        <a href="student_detail.html?id=xue_zhirui" class="btn-detail">查看详情</a>
+                    </div>
+                </div>
+
+                <div class="team-member scroll-animation" data-category="students">
+                    <div class="member-image">
+                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=sun_junyang&backgroundColor=aee6e6" alt="孙骏阳" loading="lazy">
+                        <div class="member-overlay">
+                            <div class="member-social">
+                                <!-- 保留悬浮动画结构，但移除按钮内容 -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <h3 class="member-name">孙骏阳</h3>
+                        <p class="member-role">硕士研究生 | 土壤矿物</p>
+                        <p class="member-description">2024级硕士生，研究方向为土壤矿物，导师：黄丽教授</p>
+                        <a href="student_detail.html?id=sun_junyang" class="btn-detail">查看详情</a>
+                    </div>
+                </div>
+
+                <div class="team-member scroll-animation" data-category="students">
+                    <div class="member-image">
+                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=wu_yuyang&backgroundColor=ffdfd3" alt="吴雨扬" loading="lazy">
+                        <div class="member-overlay">
+                            <div class="member-social">
+                                <!-- 保留悬浮动画结构，但移除按钮内容 -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <h3 class="member-name">吴雨扬</h3>
+                        <p class="member-role">硕士研究生 | 土壤矿物</p>
+                        <p class="member-description">2024级硕士生，研究方向为土壤矿物，导师：黄丽教授</p>
+                        <a href="student_detail.html?id=wu_yuyang" class="btn-detail">查看详情</a>
+                    </div>
+                </div>
+
+                <div class="team-member scroll-animation" data-category="students">
+                    <div class="member-image">
+                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=liu_xuehao&backgroundColor=c6e2ff" alt="刘学浩" loading="lazy">
+                        <div class="member-overlay">
+                            <div class="member-social">
+                                <!-- 保留悬浮动画结构，但移除按钮内容 -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <h3 class="member-name">刘学浩</h3>
+                        <p class="member-role">硕士研究生 | 土壤矿物</p>
+                        <p class="member-description">2024级硕士生，研究方向为土壤矿物，导师：黄丽教授</p>
+                        <a href="student_detail.html?id=liu_xuehao" class="btn-detail">查看详情</a>
+                    </div>
+                </div>
+
+                <div class="team-member scroll-animation" data-category="students">
+                    <div class="member-image">
+                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=diao_yufang&backgroundColor=ffefd5" alt="刁雨方" loading="lazy">
+                        <div class="member-overlay">
+                            <div class="member-social">
+                                <!-- 保留悬浮动画结构，但移除按钮内容 -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <h3 class="member-name">刁雨方</h3>
+                        <p class="member-role">硕士研究生 | 土壤矿物</p>
+                        <p class="member-description">2023级硕士生，研究方向为土壤矿物，导师：黄丽教授</p>
+                        <a href="student_detail.html?id=diao_yufang" class="btn-detail">查看详情</a>
+                    </div>
+                </div>
+
+                <div class="team-member scroll-animation" data-category="students">
+                    <div class="member-image">
+                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=cheng_jinyun&backgroundColor=e6e6fa" alt="程晋赟" loading="lazy">
+                        <div class="member-overlay">
+                            <div class="member-social">
+                                <!-- 保留悬浮动画结构，但移除按钮内容 -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <h3 class="member-name">程晋赟</h3>
+                        <p class="member-role">硕士研究生 | 土壤矿物</p>
+                        <p class="member-description">2023级硕士生，研究方向为土壤矿物，导师：黄丽教授</p>
+                        <a href="student_detail.html?id=cheng_jinyun" class="btn-detail">查看详情</a>
+                    </div>
+                </div>
+
+                <div class="team-member scroll-animation" data-category="students">
+                    <div class="member-image">
+                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=wang_haolong&backgroundColor=d3ffce" alt="王豪龙" loading="lazy">
+                        <div class="member-overlay">
+                            <div class="member-social">
+                                <!-- 保留悬浮动画结构，但移除按钮内容 -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <h3 class="member-name">王豪龙</h3>
+                        <p class="member-role">硕士研究生 | 土壤矿物</p>
+                        <p class="member-description">2023级硕士生，研究方向为土壤矿物，导师：黄丽教授</p>
+                        <a href="student_detail.html?id=wang_haolong" class="btn-detail">查看详情</a>
+                    </div>
+                </div>
+
+                <div class="team-member scroll-animation" data-category="students">
+                    <div class="member-image">
+                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=huang_lei&backgroundColor=e0ffff" alt="黄雷" loading="lazy">
+                        <div class="member-overlay">
+                            <div class="member-social">
+                                <!-- 保留悬浮动画结构，但移除按钮内容 -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <h3 class="member-name">黄雷</h3>
+                        <p class="member-role">硕士研究生 | 土壤矿物</p>
+                        <p class="member-description">2022级硕士生，研究方向为土壤矿物，导师：黄丽教授</p>
+                        <a href="student_detail.html?id=huang_lei" class="btn-detail">查看详情</a>
+                    </div>
+                </div>
+
+                <div class="team-member scroll-animation" data-category="students">
+                    <div class="member-image">
+                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=zhou_zhen&backgroundColor=f0f8ff" alt="周振" loading="lazy">
+                        <div class="member-overlay">
+                            <div class="member-social">
+                                <!-- 保留悬浮动画结构，但移除按钮内容 -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <h3 class="member-name">周振</h3>
+                        <p class="member-role">硕士研究生 | 土壤矿物</p>
+                        <p class="member-description">2021级硕士生，研究方向为土壤矿物，导师：黄丽教授</p>
+                        <a href="student_detail.html?id=zhou_zhen" class="btn-detail">查看详情</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3 class="footer-title">联系方式</h3>
+                <p><i class="fas fa-map-marker-alt"></i> 湖北省武汉市洪山区狮子山街1号</p>
+                <p><i class="fas fa-phone"></i> 027-12345678</p>
+                <p><i class="fas fa-envelope"></i> bioinfo@hzau.edu.cn</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-weixin"></i></a>
+                    <a href="#"><i class="fab fa-weibo"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h3 class="footer-title">快速链接</h3>
+                <div class="footer-links">
+                    <a href="../index.html">首页</a>
+                    <a href="projects.html">研究项目</a>
+                    <a href="team.html">团队成员</a>
+                    <a href="main_paper.html">研究成果</a>
+                    <a href="contact.html">联系我们</a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h3 class="footer-title">合作单位</h3>
+                <div class="footer-links">
+                    <a href="#">中国科学院</a>
+                    <a href="#">华中科技大学</a>
+                    <a href="#">武汉大学</a>
+                    <a href="#">哈佛大学</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>@华中农业大学 生物信息学与计算生物学研究组. 保留所有权利。</p>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/animations.js"></script>
+
+    <script>
+        // 优化的成员加载脚本
+        document.addEventListener('DOMContentLoaded', function() {
+            // 使用 Intersection Observer 实现图片懒加载
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        if (img.dataset.src) {
+                            img.src = img.dataset.src;
+                            img.removeAttribute('data-src');
+                        }
+                        observer.unobserve(img);
+                    }
+                });
+            });
+
+            // 监听所有成员头像
+            document.querySelectorAll('.member-avatar').forEach(img => {
+                imageObserver.observe(img);
+            });
+
+            // 优化的分类过滤功能
+            const categoryButtons = document.querySelectorAll('.team-category-button');
+            const teamMembers = document.querySelectorAll('.team-member');
+            const professorsGrid = document.getElementById('professors'); // 获取导师网格
+            const studentsGrid = document.getElementById('students');     // 获取学生网格
+            const studentsTitle = document.getElementById('students-title'); // 获取研究生标题元素
+            
+            categoryButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const category = this.getAttribute('data-category');
+                    
+                    // 移除所有按钮的active类
+                    categoryButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // 使用 requestAnimationFrame 优化动画性能
+                    requestAnimationFrame(() => {
+                        // 1. 控制整个区域的显示/隐藏
+                        if (category === 'all') {
+                            professorsGrid.style.display = 'grid'; 
+                            studentsTitle.style.display = 'block'; 
+                            studentsGrid.style.display = 'grid';
+                        } else if (category === 'professors') {
+                            professorsGrid.style.display = 'grid';
+                            studentsTitle.style.display = 'none';
+                            studentsGrid.style.display = 'none';
+                        } else if (category === 'students') {
+                            professorsGrid.style.display = 'none';
+                            studentsTitle.style.display = 'block';
+                            studentsGrid.style.display = 'grid';
+                        }
+
+                        // 2. （可选，但保留以处理动画）单独处理成员可见性，主要影响 'all' 视图
+                        teamMembers.forEach(member => {
+                            const memberCategory = member.getAttribute('data-category');
+                            // 只有当分类是 'all' 或成员分类匹配时才显示
+                            if (category === 'all' || memberCategory === category) {
+                                // 如果父容器可见，则处理单个成员
+                                if ((memberCategory === 'professors' && professorsGrid.style.display !== 'none') || 
+                                    (memberCategory === 'students' && studentsGrid.style.display !== 'none')) {
+                                    member.style.display = 'flex'; // 保持flex布局
+                                    // 延迟应用动画类以触发过渡
+                                    setTimeout(() => member.classList.add('animate'), 10); 
+                                } else {
+                                     member.style.display = 'none'; // 如果父容器隐藏，则强制隐藏
+                                }
+                            } else {
+                                // 如果分类不匹配，则隐藏成员
+                                member.classList.remove('animate');
+                                member.style.display = 'none'; 
+                            }
+                        });
+                    });
+                });
+            });
+
+            // 默认触发"全部"按钮的点击事件（确保标题状态正确）
+            if(categoryButtons.length > 0) {
+                 categoryButtons[0].click(); 
+            }
+        });
+    </script>
+</body>
+
+</html> 
