@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>主要论文 - 华中农业大学土壤化学与土壤肥力研究组</title>
+    
+    <!-- 预加载关键资源 -->
+    <link rel="preload" href="../css/base.css" as="style">
+    <link rel="preload" href="../css/animation.css" as="style">
+    <link rel="preload" href="../image/school.jpg" as="image">
+    
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/animation.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" media="print" onload="this.media='all'">
+    <style>
+        .research-hero {
+            position: relative;
+            height: 60vh;
+            min-height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)), url('../image/school.jpg');
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .research-hero-content {
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .research-hero-title {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .research-hero-subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease 0.3s forwards;
+        }
+
+        .timeline-section {
+            padding: 80px 0;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 2.5rem;
+            position: relative;
+        }
+
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 3px;
+            background-color: #2ecc71;
+            margin: 15px auto;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background-color: #ddd;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+        }
+
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+            margin-bottom: 30px;
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+
+        .timeline-content {
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            right: -20px;
+            top: 20px;
+            transform: rotate(45deg);
+            background-color: white;
+            box-shadow: 5px -5px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .timeline-item:nth-child(even) .timeline-content::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            left: -20px;
+            top: 20px;
+            transform: rotate(45deg);
+            background-color: white;
+            box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            right: -13px;
+            top: 20px;
+            border-radius: 50%;
+            background-color: #2ecc71;
+            z-index: 1;
+        }
+
+        .timeline-item:nth-child(even)::after {
+            left: -7px;
+        }
+
+        .timeline-date {
+            position: absolute;
+            width: 100px;
+            top: 18px;
+            text-align: center;
+            font-size: 0.9rem;
+            font-weight: bold;
+            color: #2ecc71;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-date {
+            right: -120px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-date {
+            left: -120px;
+        }
+
+        .timeline-title {
+            font-size: 1.3rem;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .timeline-description {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .timeline-badge {
+            display: inline-block;
+            padding: 5px 10px;
+            background-color: #f0f0f0;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: #555;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+
+        .publications-section {
+            padding: 80px 0;
+            background-color: #f9f9f9;
+        }
+
+        .publications-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .pub-year {
+            font-size: 1.8rem;
+            color: #333;
+            margin: 40px 0 20px;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .pub-year::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 10px;
+            height: 20px;
+            width: 6px;
+            background-color: #2ecc71;
+        }
+
+        .publication-item {
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .publication-item.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .publication-item:hover {
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transform: translateY(-5px);
+        }
+
+        .publication-title {
+            font-size: 1.2rem;
+            color: #333;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+
+        .publication-authors {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .publication-journal {
+            font-size: 0.9rem;
+            color: #2ecc71;
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+
+        .publication-links {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .publication-link {
+            display: inline-block;
+            padding: 5px 15px;
+            background-color: #f0f0f0;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: #555;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .publication-link:hover {
+            background-color: #2ecc71;
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .timeline::after {
+                left: 40px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 80px;
+                padding-right: 0;
+            }
+            
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+            
+            .timeline-item::after {
+                left: 33px;
+            }
+            
+            .timeline-item:nth-child(even)::after {
+                left: 33px;
+            }
+            
+            .timeline-date {
+                position: relative;
+                width: auto;
+                top: auto;
+                left: 0;
+                right: auto;
+                text-align: left;
+                margin-bottom: 10px;
+            }
+            
+            .timeline-item:nth-child(odd) .timeline-date,
+            .timeline-item:nth-child(even) .timeline-date {
+                left: auto;
+                right: auto;
+            }
+            
+            .timeline-content::after {
+                display: none;
+            }
+            
+            .research-hero-title {
+                font-size: 2.2rem;
+            }
+            
+            .research-hero-subtitle {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <h1>HZAU-BIO</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="../index.html">首页</a></li>
+                <li><a href="teacher.html">导师介绍</a></li>
+                <li><a href="team.html">成员</a></li>
+                <li><a href="projects.html">科学研究</a></li>
+                <li><a href="main_paper.html" class="active">主要论文</a></li>
+            </ul>
+            <div class="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- 英雄区域 -->
+        <section class="research-hero">
+            <div class="research-hero-content">
+                <h1 class="research-hero-title">主要论文</h1>
+                <p class="research-hero-subtitle">华中农业大学土壤化学与土壤肥力研究组在土壤矿物、土壤肥力和环境保护等领域取得了一系列重要的科研成果</p>
+            </div>
+        </section>
+
+        <!-- 研究里程碑时间线 -->
+        <section class="timeline-section">
+            <h2 class="section-title">科研项目里程碑</h2>
+            
+            <div class="timeline">
+                <div class="timeline-item timeline-item">
+                    <div class="timeline-date">2020-2023</div>
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">长期绿肥还田下水稻土中黏土矿物演化</h3>
+                        <p class="timeline-description">研究长期绿肥还田下水稻土中黏土矿物演化及其对团聚体水稳性的影响，国家自然科学基金41977020。</p>
+                        <div class="timeline-badges">
+                            <span class="timeline-badge">国家自然科学基金</span>
+                            <span class="timeline-badge">主持</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item timeline-item">
+                    <div class="timeline-date">2019-2023</div>
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">村镇社区环境监测及修复</h3>
+                        <p class="timeline-description">村镇社区环境监测及修复关键技术研发，国家重点研发计划2019YFD1100503。</p>
+                        <div class="timeline-badges">
+                            <span class="timeline-badge">国家重点研发计划</span>
+                            <span class="timeline-badge">子课题主持</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item timeline-item">
+                    <div class="timeline-date">2017-至今</div>
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">国家绿肥产业技术体系</h3>
+                        <p class="timeline-description">水田土壤及养分管理岗位，国家绿肥产业技术体系，CARS-22。</p>
+                        <div class="timeline-badges">
+                            <span class="timeline-badge">国家项目</span>
+                            <span class="timeline-badge">参加</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item timeline-item">
+                    <div class="timeline-date">2013-2017</div>
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">生活污泥沼气化处理利用技术</h3>
+                        <p class="timeline-description">生活污泥沼气化处理利用技术及设备研究与示范，公益性行业专项201303101。</p>
+                        <div class="timeline-badges">
+                            <span class="timeline-badge">公益性行业专项</span>
+                            <span class="timeline-badge">参加</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item timeline-item">
+                    <div class="timeline-date">2013-2016</div>
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">地带性土壤纳米颗粒研究</h3>
+                        <p class="timeline-description">几种地带性土壤纳米颗粒的物质组成与粘土矿物演化特点，国家自然科学基金41271252。</p>
+                        <div class="timeline-badges">
+                            <span class="timeline-badge">国家自然科学基金</span>
+                            <span class="timeline-badge">主持</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item timeline-item">
+                    <div class="timeline-date">2005</div>
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">获湖北省自然科学优秀学术论文奖</h3>
+                        <p class="timeline-description">湖北省自然科学优秀学术论文二等奖1项。</p>
+                        <div class="timeline-badges">
+                            <span class="timeline-badge">省级奖项</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 发表论文 -->
+        <section class="publications-section">
+            <div class="publications-container">
+                <h2 class="section-title">代表性论文</h2>
+                
+                <h3 class="pub-year">2024</h3>
+                <div class="publication-item scroll-animation">
+                    <h4 class="publication-title">紫云英与化肥减施对土壤颗粒中黏粒矿物组成与转化的影响</h4>
+                    <p class="publication-authors">黄雷, 成莉娟, 陈雨露, 耿明建, 聂军, 鲁艳红, 廖育林, 黄丽*</p>
+                    <p class="publication-journal">土壤, 2024, 56(3): 567–575</p>
+                    <div class="publication-links">
+                        <a href="https://zyhj.hzau.edu.cn/info/1183/7560.htm" class="publication-link" target="_blank"><i class="fas fa-external-link-alt"></i> 相关链接</a>
+                    </div>
+                </div>
+                
+                <div class="publication-item scroll-animation">
+                    <h4 class="publication-title">Clay minerals transformation in soil particles of Udic Ferrisols under 36-year Chinese milk vetch application in southern China</h4>
+                    <p class="publication-authors">Chen Y, Huang L*, Gao J, Zhao S, Huang L, Geng M, He Y, Zhang H, Huang J</p>
+                    <p class="publication-journal">Applied Clay Science, 2024, 261,107593</p>
+                    <div class="publication-links">
+                        <a href="https://zyhj.hzau.edu.cn/info/1183/7560.htm" class="publication-link" target="_blank"><i class="fas fa-external-link-alt"></i> 相关链接</a>
+                    </div>
+                </div>
+                
+                <h3 class="pub-year">专利</h3>
+                <div class="publication-item scroll-animation">
+                    <h4 class="publication-title">一种治理土壤重金属铜、铅、镉污染的钝化剂及应用</h4>
+                    <p class="publication-authors">姜冠杰, 胡红青, 刘永红, 徐学慧, 付庆灵, 张峻清, 黄丽</p>
+                    <p class="publication-journal">专利号: 201010595856.X</p>
+                    <div class="publication-links">
+                        <a href="https://zyhj.hzau.edu.cn/info/1183/7560.htm" class="publication-link" target="_blank"><i class="fas fa-external-link-alt"></i> 相关链接</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3 class="footer-title">联系方式</h3>
+                <p><i class="fas fa-map-marker-alt"></i> 湖北省武汉市洪山区狮子山街1号</p>
+                <p><i class="fas fa-phone"></i> 13036165770</p>
+                <p><i class="fas fa-envelope"></i> daisyh@mail.hzau.edu.cn</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-weixin"></i></a>
+                    <a href="#"><i class="fab fa-weibo"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h3 class="footer-title">快速链接</h3>
+                <div class="footer-links">
+                    <a href="../index.html">首页</a>
+                    <a href="teacher.html">导师介绍</a>
+                    <a href="team.html">成员</a>
+                    <a href="projects.html">科学研究</a>
+                    <a href="main_paper.html">主要论文</a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h3 class="footer-title">合作单位</h3>
+                <div class="footer-links">
+                    <a href="#">中国科学院</a>
+                    <a href="#">华中科技大学</a>
+                    <a href="#">武汉大学</a>
+                    <a href="#">全国绿肥产业技术体系</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>@华中农业大学 资源与环境学院 土壤化学与土壤肥力研究组. 保留所有权利。</p>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/animations.js"></script>
+</body>
+
+</html> 
